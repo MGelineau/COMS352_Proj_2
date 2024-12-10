@@ -65,7 +65,18 @@ void write_output(int c) {
 }
 
 int encrypt(int c) {
-	return (c + key - 32) % 94 + 32;
+		if (c >= 'a' && c <= 'z') {
+		c += key;
+		if (c > 'z') {
+			c = c - 'z' + 'a' - 1;
+		}
+	} else if (c >= 'A' && c <= 'Z') {
+		c += key;
+		if (c > 'Z') {
+			c = c - 'Z' + 'A' - 1;
+		}
+	}
+	return c;
 }
 
 void log_counts() {
